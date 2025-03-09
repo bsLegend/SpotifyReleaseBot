@@ -12,11 +12,7 @@
       ```bash
       git clone https://github.com/your-username/spotify-artist-releases.git
       ```
-   2. Install dependencies:
-      ```bash
-      pip install -r requirements.txt
-      ```
-   3. Configure your Spotify API credentials in a `secret.json` file:
+   2. Configure your Spotify API credentials in a `secret.json` file:
       ```json
       {
         "clientId": "YOUR_CLIENT_ID",
