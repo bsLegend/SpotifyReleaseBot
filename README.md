@@ -20,8 +20,8 @@ To use this project, you need the following:
 ### Step 1: Clone the Repository
 Clone the project to your local machine:
 ``` bash
-git clone https://github.com/your_username/spotify-new-release-notifier.git
-cd spotify-new-release-notifier
+git clone https://github.com/bsLegend/SpotifyReleaseBot
+cd SpotifyReleaseBot
 ```
 ### Step 2: Obtain Spotify API Credentials
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
@@ -80,11 +80,6 @@ album
     - Confirm the bot has permissions to send messages in the target channel.
     - Ensure the `BOT_TOKEN` and `CHANNEL_ID` values are correct.
 
-3. **General Python Errors**:
-    - Missing dependencies can be installed using:
-``` bash
-      pip install -r requirements.txt
-```
 - Syntax issues? Ensure you're running **Python 3.10 or later**.
 
 ## Contributing
