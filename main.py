@@ -1,5 +1,6 @@
 import json
 from get_release import get_new_release
+from send_message import send_message
 
 artistIds = []
 
@@ -37,8 +38,9 @@ for artistId in artistIds:
     spotifyAPIUrl = f"https://api.spotify.com/v1/artists/{artistId}/albums"
     get_new_release(spotifyAPIUrl, TokenUrl, clientId, clientSecret, newReleaseData)
     if newReleaseData["newRelease"] is True:
-        print(f"New Release from {newReleaseData['Artist']}:\n{newReleaseData['AlbumName']}\n{newReleaseData['Type']}")
-        #send info here
+        message = f"New Release from {newReleaseData['Artist']}:\n{newReleaseData['AlbumName']}\n{newReleaseData['Type']}"
+        send_message(message)
+
 
 
 
