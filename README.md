@@ -1,4 +1,4 @@
-# Spotify New Release Notifier
+# SpotifyReleaseBot
 This is a Python-based script that checks for new releases by specific artists on Spotify and sends a notification using Discord. The repository integrates the Spotify REST API and a Discord bot for seamless updates.
 ## Features
 - Fetches album releases from Spotify for specified artists.
