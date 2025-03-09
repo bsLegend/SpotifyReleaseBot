@@ -60,9 +60,12 @@ CHANNEL_ID = "YOUR_CHANNEL_ID"
 ``` bash
     python main.py
 ```
-1. The script will:
+2. The script will:
     - Use the Spotify API to check for new releases from the artists in `artists.json`.
     - Send a message to your specified Discord channel if a new release is detected.
+  
+## Running the Script via Cron
+If you intend to run the script via a cron-job, be sure to fully qualify every path in the code to ensure that it works properly.
 
 ## Example Output
 When a new release is detected, the bot sends a message in your Discord channel:
