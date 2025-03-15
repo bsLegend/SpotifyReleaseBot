@@ -1,4 +1,4 @@
-# Spotify New Release Notifier
+# SpotifyReleaseBot
 This is a Python-based script that checks for new releases by specific artists on Spotify and sends a notification using Discord. The repository integrates the Spotify REST API and a Discord bot for seamless updates.
 ## Features
 - Fetches album releases from Spotify for specified artists.
@@ -20,8 +20,8 @@ To use this project, you need the following:
 ### Step 1: Clone the Repository
 Clone the project to your local machine:
 ``` bash
-git clone https://github.com/your_username/spotify-new-release-notifier.git
-cd spotify-new-release-notifier
+git clone https://github.com/bsLegend/SpotifyReleaseBot
+cd SpotifyReleaseBot
 ```
 ### Step 2: Obtain Spotify API Credentials
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
@@ -60,9 +60,12 @@ CHANNEL_ID = "YOUR_CHANNEL_ID"
 ``` bash
     python main.py
 ```
-1. The script will:
+2. The script will:
     - Use the Spotify API to check for new releases from the artists in `artists.json`.
     - Send a message to your specified Discord channel if a new release is detected.
+  
+## Running the Script via Cron
+If you intend to run the script via a cron-job, be sure to fully qualify every path in the code to ensure that it works properly.
 
 ## Example Output
 When a new release is detected, the bot sends a message in your Discord channel:
@@ -80,11 +83,6 @@ album
     - Confirm the bot has permissions to send messages in the target channel.
     - Ensure the `BOT_TOKEN` and `CHANNEL_ID` values are correct.
 
-3. **General Python Errors**:
-    - Missing dependencies can be installed using:
-``` bash
-      pip install -r requirements.txt
-```
 - Syntax issues? Ensure you're running **Python 3.10 or later**.
 
 ## Contributing
