@@ -60,7 +60,7 @@ for artistId in artistIds:
     get_new_release(spotifyAPIUrl, TokenUrl, clientId, clientSecret, newReleaseData)
 
     for item in alreadyMessaged:
-        if item == f"{newReleaseData["releaseId"]}":
+        if item == newReleaseData["releaseId"]:
             newReleaseData["newRelease"] = False
             break
 
@@ -79,7 +79,7 @@ for artistId in artistIds:
             send_message("Single", message, newReleaseData["imageLink"])
 
         alreadyMessagedData["alreadyMessaged"].append(
-            f"{newReleaseData["releaseId"]}")
+            newReleaseData["releaseId"])
 
         with open("alreadyMessaged.json", "w") as file:
             json.dump(alreadyMessagedData, file, indent=4)
