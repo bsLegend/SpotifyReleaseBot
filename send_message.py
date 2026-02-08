@@ -7,14 +7,20 @@ with open("discordBotSettings.json", "r") as file:
 channelId = data["channelId"]
 botToken = data["botToken"]
 
-def send_message(content):
+def send_message(releaseType, description, albumUri):
     url = f"https://discord.com/api/v10/channels/{channelId}/messages"
     headers = {
         "Authorization": f"Bot {botToken}",
         "Content-Type": "application/json"
     }
     data = {
-        "content": content
+        "embeds": [{
+            "title": f"🎵 New {releaseType} Release! 🎵",
+            "description": f"{description}",
+            "thumbnail": {
+                "url": f"{albumUri}"
+            }
+        }]
     }
 
     response = requests.post(url, headers=headers, json=data)

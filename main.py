@@ -1,5 +1,5 @@
 import json
-from get_release import get_new_release
+from get_release import get_new_release, get_songs_in_album
 from send_message import send_message
 
 artistIds = []
@@ -45,24 +45,41 @@ with open("secret.json", "r") as config_file:
 
 newReleaseData = {
     "newRelease": False,
-    "Artist": "",
+    "Artists": "",
     "AlbumName": "",
-    "Type": ""
+    "Type": "",
+    "releaseId": "",
+    "imageLink": "",
+    "albumUri": "",
 }
+
+isAlbum = False
 
 for artistId in artistIds:
     spotifyAPIUrl = f"https://api.spotify.com/v1/artists/{artistId}/albums"
     get_new_release(spotifyAPIUrl, TokenUrl, clientId, clientSecret, newReleaseData)
-    for items in alreadyMessaged:
-        if items == f"{newReleaseData['Artist']}{newReleaseData['AlbumName']}{newReleaseData['Type']}":
+
+    for item in alreadyMessaged:
+        if item == f"{newReleaseData["releaseId"]}":
             newReleaseData["newRelease"] = False
             break
+
+    if newReleaseData["Type"] == "album":
+        isAlbum = True
+
     if newReleaseData["newRelease"] is True:
-        message = f"New Release from {newReleaseData['Artist']}:\n{newReleaseData['AlbumName']}\n{newReleaseData['Type']}"
-        send_message(message)
+        message = f"{newReleaseData['Artists']}\n{newReleaseData['AlbumName']}"
+        if isAlbum:
+            songs = get_songs_in_album(newReleaseData["albumUri"], TokenUrl, clientId, clientSecret)
+            message += "\n\nSongs:\n"
+            for song in songs:
+                message += f"\n **{song[0]}**\n└ *{song[1]}*"
+            send_message("Album", message, newReleaseData["imageLink"])
+        else:
+            send_message("Single", message, newReleaseData["imageLink"])
 
         alreadyMessagedData["alreadyMessaged"].append(
-            f"{newReleaseData['Artist']}{newReleaseData['AlbumName']}{newReleaseData['Type']}")
+            f"{newReleaseData["releaseId"]}")
 
         with open("alreadyMessaged.json", "w") as file:
             json.dump(alreadyMessagedData, file, indent=4)
